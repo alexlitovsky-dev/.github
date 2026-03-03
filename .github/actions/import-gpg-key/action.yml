@@ -1,0 +1,15 @@
+name: Import GPG key
+description: Imports the GPG private key for artifact signing
+
+inputs:
+  gpg-private-key:
+    description: GPG private key to import
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - run: echo "$GPG_PRIVATE_KEY" | gpg --import --batch
+      shell: bash
+      env:
+        GPG_PRIVATE_KEY: ${{ inputs.gpg-private-key }}

@@ -1,0 +1,11 @@
+name: Download Maven settings
+description: Fetches the org-level Maven settings.xml from the .github repo
+
+runs:
+  using: composite
+  steps:
+    - run: |
+        mkdir -p ~/.m2
+        curl -sL https://raw.githubusercontent.com/alterioncorp/.github/main/maven/settings.xml \
+          -o ~/.m2/settings.xml
+      shell: bash
